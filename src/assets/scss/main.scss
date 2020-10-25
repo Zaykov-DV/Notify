@@ -92,4 +92,8 @@ section, .section {
   }
 }
 
+.error {
+  color: $danger-color
+}
+
 @import "./common.scss";
