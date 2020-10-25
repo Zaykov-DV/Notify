@@ -1,6 +1,7 @@
 # vue-cli
-Базовая сборка на VUE CLI 3
-* установлены роуты
+Notify App
+Сборка на VUE CLI 3
+* установлены компоненты notify и preloader
 
 
 ## Project setup
