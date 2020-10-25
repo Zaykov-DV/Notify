@@ -43,19 +43,27 @@ export default  {
   },
   computed: {
     messages () {
-      return this.$store.getters.getMessage
+      return this.$store.getters.getMessageMain
     }
   },
   methods: {
     getNotify () {
       this.loading = true
       axios
-          .get('https://tocode.ru/static/c/vue-pro/notifyApi.php')
+          .get('https://www.eclipsesite.site/api/notifyApi.php')
             .then(response => {
-              let res = response.data.notify
-              this.$store.dispatch('setMessage', res)
-           //   this.messages = res
-           //   console.log(res)
+              let res = response.data.notify,
+                  messages = [],
+                  messagesMain = []
+
+              //filter
+              for (let i = 0; i < res.length; i++) {
+                if (res[i].main) messagesMain.push(res[i])
+                else messages.push(res[i])
+              }
+
+              this.$store.dispatch('setMessage', messages)
+              this.$store.dispatch('setMessageMain', messagesMain)
             })
               .catch(error => {
                 console.log(error)
@@ -80,7 +88,6 @@ export default  {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
 }
 
 .notify__wrapper {
